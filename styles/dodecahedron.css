@@ -77,6 +77,7 @@
 .sceneContainer * {
   position: absolute;
   transform-style: preserve-3d;
+  user-select: none;
 }
 
 .scene,
