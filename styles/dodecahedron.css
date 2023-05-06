@@ -280,8 +280,8 @@
   border-left: 1px solid #aaa;
 }
 
-@media (orientation: portrait) {
-  body {
-    font-size: 0.5vw;
-  }
-}
+@media screen and (max-width: 800px) {
+ .scene{
+   transform: scale(0.6);
+ }
+} 
