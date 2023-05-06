@@ -13,10 +13,12 @@ window.addEventListener("pointerup", mouseupHandler)
 function mousedownHandler(event) {
   startPos = [event.x.toFixed(2), event.y.toFixed(2)]
   window.addEventListener("mousemove", mousemoveHandler, true)
+  window.addEventListener("pointermove", mousemoveHandler, true)
 }
 
 function mouseupHandler(event) {
   window.removeEventListener("mousemove", mousemoveHandler, true)
+window.removeEventListener("pointermove", mousemoveHandler, true)
   currentPos = [dodecahedron.style.transform.split("rotateX(")[1]?.split("deg")[0], dodecahedron.style.transform.split("rotateY(")[1]?.split("deg")[0]]
   startPos = [0, 0]
 }
