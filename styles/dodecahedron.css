@@ -1,0 +1,262 @@
+.triangle,
+.square {
+  transition: all 1s ease-in-out;
+}
+
+.triangle {
+  --gradAngle: atan(0.5);
+  width: 40em;
+  aspect-ratio: 1;
+  background-image: conic-gradient(
+    from calc(270deg - var(--gradAngle)) at 100% 50%,
+    #000 0 calc(var(--gradAngle) * 2),
+    #0000 calc(var(--gradAngle) * 2)
+  );
+  transform: translateX(0) rotateY(30deg);
+}
+
+.triangle:hover {
+  transform: translateX(-50%);
+}
+
+.square {
+  inset: 0;
+  background-color: #eee;
+  filter: grayscale(1);
+  transform-origin: 0 0;
+  rotate: y 90deg;
+  clip-path: polygon(
+    0 0,
+    0 100%,
+    50% 100%,
+    50% 0,
+    50% 0,
+    50% 100%,
+    100% 100%,
+    100% 0
+  );
+}
+
+#playPause:not(:checked) ~ .scene .dodecahedron {
+  animation-play-state: paused;
+}
+
+#playPause:checked ~ label {
+  margin: 30em 30em;
+}
+
+#playPause:checked ~ label .triangle {
+  transform: translateX(0) rotateY(90deg);
+}
+
+#playPause:checked ~ label .square {
+  filter: none;
+  clip-path: polygon(
+    0 0,
+    0 100%,
+    33% 100%,
+    33% 0,
+    67% 0,
+    67% 100%,
+    100% 100%,
+    100% 0
+  );
+}
+
+.sceneContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  font-size: 0.5vh;
+}
+
+.sceneContainer * {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.scene,
+.dodecahedron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  place-self: center;
+  width: 100em;
+  aspect-ratio: 1;
+  perspective: 250em;
+  z-index: -1;
+}
+
+.dodecahedron {
+  --ngon: 5;
+  --unit: calc(1em * var(--unitScale));
+  --triAngle: calc(
+    360deg / var(--ngon)
+  ); /* the central angle of the pentagon's triangular slice */
+  --a3gon: calc(
+    sin(calc(var(--triAngle) / 2)) * 100
+  ); /* the base of a pentagon's triangular slice*/
+  --h3gon: calc(
+    cos(calc(var(--triAngle) / 2)) * 50
+  ); /* the height of a pentagon's triangular slice*/
+  --h5gon: calc(var(--h3gon) + 50); /* total height of that same pentagon */
+  --pentAngle: asin(
+    calc(var(--h3gon) / var(--h5gon))
+  ); /* the angle that the pentagon would be inclined at if it were leaning against the center pivot axis of another pentagon */
+  --pentH: calc(
+    cos(var(--pentAngle)) * var(--h5gon)
+  ); /* the height at which the tip of that pentagon touches the pivot axis */
+  --median: calc(
+    (var(--a3gon) * sin(var(--triAngle)) + var(--h5gon)) / 2
+  ); /* the median value of the triangular slice's height and the pentagon's height */
+  --Hratio: calc(
+    var(--median) / var(--h5gon)
+  ); /* ratio of the median and the pentagram's height */
+  --dodecaH: calc(
+    var(--pentH) * var(--Hratio)
+  ); /* the height of the dodecahedron */
+  --unitScale: calc(50 / var(--dodecaH));
+  inset: calc(50 * (1em - var(--unit)));
+  /* animation: spin 6s linear infinite; */
+}
+
+.lid {
+  transform: rotateX(calc(-90deg * var(--dir)))
+    translateZ(calc(var(--dodecaH) * var(--unit)));
+}
+
+.wall:nth-child(2n + 1) {
+  --dir: 1;
+}
+
+.wall:nth-child(2n) {
+  --dir: -1;
+}
+
+.side {
+  transform: rotateY(calc(var(--step) * var(--triAngle) + 0.5turn))
+    rotateX(calc(var(--pentAngle) * -1 + 90deg + 90deg * var(--dir)))
+    translateZ(calc(var(--dodecaH) * var(--unit)));
+}
+
+.wall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6);
+  clip-path: polygon(
+    calc((1 - sin(calc(0 * 72deg))) * 50%)
+      calc((1 - cos(calc(0 * 72deg))) * 50%),
+    calc((1 - sin(calc(1 * 72deg))) * 50%)
+      calc((1 - cos(calc(1 * 72deg))) * 50%),
+    calc((1 - sin(calc(2 * 72deg))) * 50%)
+      calc((1 - cos(calc(2 * 72deg))) * 50%),
+    calc((1 - sin(calc(3 * 72deg))) * 50%)
+      calc((1 - cos(calc(3 * 72deg))) * 50%),
+    calc((1 - sin(calc(4 * 72deg))) * 50%)
+      calc((1 - cos(calc(4 * 72deg))) * 50%)
+  );
+}
+.wall:nth-child(1) {
+  background-image: url('https://img.tourister.ru/files/1/9/9/8/4/2/5/8/clones/1102_800_fixedwidth.jpg');
+}
+.wall:nth-child(2) {
+  background-image: url('https://img.tourister.ru/files/6/3/7/0/7/7/6/clones/1187_800_fixedwidth.jpg');
+}
+.wall:nth-child(3) {
+  background-image: url('https://img.tourister.ru/files/1/4/0/5/1/7/6/2/clones/1065_800_fixedwidth.jpg');
+}
+.wall:nth-child(4) {
+  background-image: url('https://img.tourister.ru/files/1/5/2/3/2/4/8/9/clones/1067_800_fixedwidth.jpg');
+}
+.wall:nth-child(5) {
+  background-image: url('https://img.tourister.ru/files/1/5/2/8/7/3/0/3/clones/1067_800_fixedwidth.jpg');
+}
+.wall:nth-child(6) {
+  background-image: url('https://img.tourister.ru/files/4/3/7/1/1/9/1/clones/1200_800_fixedwidth.jpg');
+}
+.wall:nth-child(7) {
+  background-image: url('https://img.tourister.ru/files/2/6/8/9/6/0/7/9/clones/1074_800_fixedwidth.jpg');
+}
+.wall:nth-child(8) {
+  background-image: url('https://img.tourister.ru/files/4/1/4/9/3/6/5/clones/538_800_fixedwidth.jpg');
+}
+.wall:nth-child(9) {
+  background-image: url('https://img.tourister.ru/files/4/1/8/0/6/7/5/clones/1200_800_fixedwidth.jpg');
+}
+.wall:nth-child(10) {
+  background-image: url('https://img.tourister.ru/files/1/9/9/8/4/2/9/8/clones/1067_800_fixedwidth.jpg');
+}
+.wall:nth-child(11) {
+  background-image: url('https://img.tourister.ru/files/4/0/1/6/4/3/3/clones/1200_800_fixedwidth.jpg');
+}
+.wall:nth-child(12) {
+  background-image: url('https://img.tourister.ru/files/4/3/6/5/3/7/2/clones/1200_800_fixedwidth.jpg');
+}
+
+.wall:nth-child(1),
+.wall:nth-child(2) {
+  --step: 0;
+}
+
+.wall:nth-child(3),
+.wall:nth-child(4) {
+  --step: 1;
+}
+
+.wall:nth-child(5),
+.wall:nth-child(6) {
+  --step: 2;
+}
+
+.wall:nth-child(7),
+.wall:nth-child(8) {
+  --step: 3;
+}
+
+.wall:nth-child(9),
+.wall:nth-child(10) {
+  --step: 4;
+}
+
+.wall:nth-child(11),
+.wall:nth-child(12) {
+  --step: 5;
+}
+
+.wall > .line {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  height: 40px;
+  background-color: #fff;
+  transform-origin: left bottom;
+}
+
+.wall > .line > .cell {
+  position: static;
+  width: auto;
+  height: 50px;
+  aspect-ratio: 1/1;
+  border: 2px solid #303030;
+  border-left-width: 1px;
+  border-right-width: 1px;
+
+}
+
+@media (orientation: portrait) {
+  body {
+    font-size: 0.5vw;
+  }
+}
