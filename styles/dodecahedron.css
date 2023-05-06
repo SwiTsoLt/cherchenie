@@ -71,11 +71,13 @@
   height: 100vh;
   min-height: 100vh;
   font-size: 0.5vh;
+  user-select: none;
 }
 
 .sceneContainer * {
   position: absolute;
   transform-style: preserve-3d;
+  user-select: none;
 }
 
 .scene,
@@ -156,7 +158,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.6);
+  filter: brightness(0.9);
   clip-path: polygon(
     calc((1 - sin(calc(0 * 72deg))) * 50%)
       calc((1 - cos(calc(0 * 72deg))) * 50%),
@@ -171,40 +173,40 @@
   );
 }
 .wall:nth-child(1) {
-  background-image: url('https://img.tourister.ru/files/1/9/9/8/4/2/5/8/clones/1102_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/1/9/9/8/4/2/5/8/clones/1102_800_fixedwidth.jpg");
 }
 .wall:nth-child(2) {
-  background-image: url('https://img.tourister.ru/files/6/3/7/0/7/7/6/clones/1187_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/6/3/7/0/7/7/6/clones/1187_800_fixedwidth.jpg");
 }
 .wall:nth-child(3) {
-  background-image: url('https://img.tourister.ru/files/1/4/0/5/1/7/6/2/clones/1065_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/1/4/0/5/1/7/6/2/clones/1065_800_fixedwidth.jpg");
 }
 .wall:nth-child(4) {
-  background-image: url('https://img.tourister.ru/files/1/5/2/3/2/4/8/9/clones/1067_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/1/5/2/3/2/4/8/9/clones/1067_800_fixedwidth.jpg");
 }
 .wall:nth-child(5) {
-  background-image: url('https://img.tourister.ru/files/1/5/2/8/7/3/0/3/clones/1067_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/1/5/2/8/7/3/0/3/clones/1067_800_fixedwidth.jpg");
 }
 .wall:nth-child(6) {
-  background-image: url('https://img.tourister.ru/files/4/3/7/1/1/9/1/clones/1200_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/4/3/7/1/1/9/1/clones/1200_800_fixedwidth.jpg");
 }
 .wall:nth-child(7) {
-  background-image: url('https://img.tourister.ru/files/2/6/8/9/6/0/7/9/clones/1074_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/2/6/8/9/6/0/7/9/clones/1074_800_fixedwidth.jpg");
 }
 .wall:nth-child(8) {
-  background-image: url('https://img.tourister.ru/files/4/1/4/9/3/6/5/clones/538_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/4/1/4/9/3/6/5/clones/538_800_fixedwidth.jpg");
 }
 .wall:nth-child(9) {
-  background-image: url('https://img.tourister.ru/files/4/1/8/0/6/7/5/clones/1200_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/4/1/8/0/6/7/5/clones/1200_800_fixedwidth.jpg");
 }
 .wall:nth-child(10) {
-  background-image: url('https://img.tourister.ru/files/1/9/9/8/4/2/9/8/clones/1067_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/1/9/9/8/4/2/9/8/clones/1067_800_fixedwidth.jpg");
 }
 .wall:nth-child(11) {
-  background-image: url('https://img.tourister.ru/files/4/0/1/6/4/3/3/clones/1200_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/4/0/1/6/4/3/3/clones/1200_800_fixedwidth.jpg");
 }
 .wall:nth-child(12) {
-  background-image: url('https://img.tourister.ru/files/4/3/6/5/3/7/2/clones/1200_800_fixedwidth.jpg');
+  background-image: url("https://img.tourister.ru/files/4/3/6/5/3/7/2/clones/1200_800_fixedwidth.jpg");
 }
 
 .wall:nth-child(1),
@@ -251,7 +253,7 @@
 .wall > .line {
   display: flex;
   justify-content: center;
-  width: fit-content;
+  width: 200px;
   height: fit-content;
   transform: translateY(-50px);
   border-radius: 8px;
@@ -260,8 +262,8 @@
 
 .wall > .line > .cell {
   position: static;
-  width: auto;
-  height: 50px;
+  width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
@@ -278,8 +280,12 @@
   border-left: 1px solid #aaa;
 }
 
-@media (orientation: portrait) {
-  body {
-    font-size: 0.5vw;
+@media screen and (max-width: 800px) {
+  .scene {
+    transform: scale(0.6);
+  }
+
+  .wall > .question {
+    transform: rotateZ(180deg) translateY(-60px);
   }
 }

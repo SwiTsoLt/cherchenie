@@ -1,7 +1,3 @@
-html {
-  scroll-behavior: smooth;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -10,8 +6,8 @@ html {
   width: 100%;
   height: fit-content;
   min-height: 100vh;
+  padding: 0 20px;
 }
-
 
 .bg {
   position: fixed;
@@ -52,7 +48,7 @@ header {
   width: 300px;
   font-size: 2em;
   font-weight: 500;
-  background: linear-gradient(0.55turn, #FFECD2, #FCB69F);
+  background: linear-gradient(0.55turn, #ffecd2, #fcb69f);
   padding: 20px;
   border-radius: 32px;
   text-align: center;
