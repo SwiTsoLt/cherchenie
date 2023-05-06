@@ -286,6 +286,6 @@
  }
 
  .wall > .question {
-   transform: rotateZ(180deg) translateY(-60px   
+   transform: rotateZ(180deg) translateY(-60px);  
  } 
 } 
