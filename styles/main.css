@@ -6,7 +6,7 @@
   width: 100%;
   height: fit-content;
   min-height: 100vh;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .bg {
@@ -45,11 +45,18 @@ header {
 .title > a {
   text-decoration: none;
   color: #303030;
-  width: 300px;
+  width: 100%;
+  max-width: 280px;
   font-size: 2em;
   font-weight: 500;
   background: linear-gradient(0.55turn, #ffecd2, #fcb69f);
   padding: 20px;
   border-radius: 32px;
   text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .title > h1 {
+    font-size: 2em;
+  }
 }
