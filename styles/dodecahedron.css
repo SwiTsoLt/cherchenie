@@ -158,7 +158,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.6);
+  filter: brightness(0.9);
   clip-path: polygon(
     calc((1 - sin(calc(0 * 72deg))) * 50%)
       calc((1 - cos(calc(0 * 72deg))) * 50%),
