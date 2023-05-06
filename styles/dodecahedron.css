@@ -284,4 +284,8 @@
  .scene{
    transform: scale(0.6);
  }
+
+ .wall > .question {
+   transform: rotateZ(180deg) translateY(-60px   
+ } 
 } 
