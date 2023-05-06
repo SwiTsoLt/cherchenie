@@ -147,8 +147,10 @@
 
 .wall {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-gap: 20px;
   inset: 0;
   background-color: #fff;
   background-repeat: no-repeat;
@@ -235,13 +237,25 @@
   --step: 5;
 }
 
+.wall > .question {
+  position: static;
+  width: 200px;
+  height: 100px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 2em;
+  transform: rotateZ(180deg) translateY(-80px);
+}
+
 .wall > .line {
   display: flex;
   justify-content: center;
   width: fit-content;
-  height: 40px;
-  background-color: #fff;
-  transform-origin: left bottom;
+  height: fit-content;
+  transform: translateY(-50px);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .wall > .line > .cell {
@@ -249,10 +263,19 @@
   width: auto;
   height: 50px;
   aspect-ratio: 1/1;
-  border: 2px solid #303030;
-  border-left-width: 1px;
-  border-right-width: 1px;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  background-color: #fff;
+}
 
+.wall > .line > .cell:first-child {
+  border: none;
+  border-right: 1px solid #aaa;
+}
+
+.wall > .line > .cell:last-child {
+  border: none;
+  border-left: 1px solid #aaa;
 }
 
 @media (orientation: portrait) {
